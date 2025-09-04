@@ -1,0 +1,515 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ömer Kuloğlu | Grafik Tasarımcı</title>
+    <link rel="icon" href="file:///C:/Users/omerk/Desktop/Web%20final%201/Logo%20title.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+            background-color: #000000;
+            color: #e6e6e6;
+            line-height: 1.6;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        
+        /* Genel stil ayarları */
+        h1, h2, h3 {
+            text-align: center;
+        }
+        
+        /* Header Section */
+        header {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            position: relative;
+            background: linear-gradient(135deg, #0e0e0e 0%, #0a0a0a 100%);
+        }
+        
+        .name {
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, #ac8dc9, #da6e02);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.02em;
+        }
+        
+        .title {
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            color: #9e9d9d;
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #da6e02;
+            font-size: 1.5rem;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-15px) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-7px) translateX(-50%);
+            }
+        }
+        
+        /* Section Styles */
+        section {
+            padding: 100px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            margin-bottom: 60px;
+            color: #ffffff;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, #d6d6d6, #da6e02);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        /* Portfolio Section */
+        .portfolio-container {
+            max-width: 1400px;
+            margin: 40px auto 0;
+            position: relative;
+        }
+        
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .portfolio-row {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .portfolio-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            flex: 1;
+            aspect-ratio: 3/4;
+            cursor: pointer;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        
+        .portfolio-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(138, 43, 226, 0.2);
+        }
+        
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .portfolio-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .skill-item {
+            text-align: center;
+            padding: 20px;
+            transition: transform 0.3s ease;
+        }
+        
+        .skill-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .skill-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .skill-icon i {
+            font-size: 30px;
+            color: #8a2be2;
+        }
+        
+        .skill-item:hover .skill-icon {
+            background: rgba(138, 43, 226, 0.15);
+            transform: scale(1.1);
+        }
+        
+        .skill-name {
+            font-size: 0.95rem;
+            color: #d0d0d0;
+            font-weight: 500;
+        }
+        
+        /* About Section */
+        .about-content {
+            max-width: 800px;
+            margin: 40px auto 0;
+            text-align: center;
+            font-size: clamp(1rem, 2.5vw, 1.1rem);
+            color: #b3b3b3;
+            line-height: 1.8;
+            font-weight: 400;
+        }
+        
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .contact-item {
+            text-align: center;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .contact-item:hover {
+            background: rgba(138, 43, 226, 0.08);
+            transform: translateY(-5px);
+        }
+        
+        .contact-icon {
+            font-size: 1.8rem;
+            color: #e2862b;
+            margin-bottom: 15px;
+        }
+        
+        .contact-label {
+            font-size: 0.9rem;
+            color: #da6e02;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            display: block;
+            font-weight: 500;
+        }
+        
+        .contact-value {
+            font-size: 1.1rem;
+            color: #e6e6e6;
+            font-weight: 500;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .portfolio-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .skills-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 20px;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .skills-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            section {
+                padding: 80px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header id="home">
+        <h1 class="name">Ömer Kuloğlu</h1>
+        <p class="title">Grafik Tasarımcı</p>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </header>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio">
+        <h2 class="section-title">Seçili Projeler</h2>
+        <div class="portfolio-container">
+            <div class="portfolio-grid">
+                <!-- Satır 1 -->
+                <div class="portfolio-item">
+                    <img src="file:///C:/Users/omerk/Desktop/Web%20sayfas%C4%B1%20final%20yay%C4%B1nlama/%C4%B0mg/Kendrilck%20Lamar%20GNX%20POSTER%20DES%C4%B0GN%20Jpag.jpg" alt="Marka Kimliği 1">
+                </div>
+                <div class="portfolio-item">
+                    <img src="file:///C:/Users/omerk/Desktop/Web%20sayfas%C4%B1%20final%20yay%C4%B1nlama/%C4%B0mg/MAX%20VERSTAPPEN%20winner.jpg" alt="Web Tasarımı 1">
+                </div>
+                <div class="portfolio-item">
+                    <img src="file:///C:/Users/omerk/Desktop/Web%20sayfas%C4%B1%20final%20yay%C4%B1nlama/%C4%B0mg/LEW%C4%B0S%20HAM%C4%B0LTON%20Harkete%20blnk.jpg" alt="Paketleme 1">
+                </div>
+                
+                <!-- Satır 2 -->
+                <div class="portfolio-item">
+                    <img src="file:///C:/Users/omerk/Desktop/Web%20sayfas%C4%B1%20final%20yay%C4%B1nlama/%C4%B0mg/Lewis%20Hamilton%20Starboy%20jpag.jpg" alt="Sosyal Medya 1">
+                </div>
+                <div class="portfolio-item">
+                    <img src="file:///C:/Users/omerk/Desktop/Web%20sayfas%C4%B1%20final%20yay%C4%B1nlama/%C4%B0mg/SUPER%20MAN%20COMICS%20JPAG.jpg" alt="Hareketli Grafik 1">
+                </div>
+                <div class="portfolio-item">
+                    <img src="file:///C:/Users/omerk/Desktop/Web%20sayfas%C4%B1%20final%20yay%C4%B1nlama/%C4%B0mg/The%20Amazing%20Spider%20Man%20Poster%20Design.jpg" alt="Editöryal 1">
+                </div>
+                
+                <!-- Satır 3 -->
+                <div class="portfolio-item">
+                    <img src="file:///C:/Users/omerk/Desktop/Web%20sayfas%C4%B1%20final%20yay%C4%B1nlama/%C4%B0mg/VALENT%C4%B0NO%20PARFUME%20JPAG.jpg" alt="Logo Tasarımı 1">
+                </div>
+                <div class="portfolio-item">
+                    <img src="file:///C:/Users/omerk/Desktop/Web%20sayfas%C4%B1%20final%20yay%C4%B1nlama/%C4%B0mg/VENOM%20COMICS%20BARKOD%20JPAG.jpg" alt="Arayüz Tasarımı 1">
+                </div>
+                <div class="portfolio-item">
+                    <img src="file:///C:/Users/omerk/Desktop/Web%20sayfas%C4%B1%20final%20yay%C4%B1nlama/%C4%B0mg/wrc%20turkey%202025%20season.jpg" alt="Marka Kimliği 2">
+                </div>
+                
+                <!-- Satır 4 -->
+                <div class="portfolio-item">
+                    <img src="file:///C:/Users/omerk/Desktop/Web%20sayfas%C4%B1%20final%20yay%C4%B1nlama/%C4%B0mg/GLAMOUR-DERG%C4%B0%20JPAG.jpg" alt="Web Tasarımı 2">
+                </div>
+                <div class="portfolio-item">
+                    <img src="file:///C:/Users/omerk/Desktop/Web%20sayfas%C4%B1%20final%20yay%C4%B1nlama/%C4%B0mg/BATMAN%20ALL%20STAR%20JPAG.jpg" alt="Paketleme 2">
+                </div>
+                <div class="portfolio-item">
+                    <img src="file:///C:/Users/omerk/Desktop/Web%20sayfas%C4%B1%20final%20yay%C4%B1nlama/%C4%B0mg/fallout%20tasar%C4%B1m%20kenarlar%20a%C3%A7%C4%B1k.jpg" alt="Sosyal Medya 2">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+     <section id="skills">
+    <h2 class="section-title">Çalışma Biçimim</h2>
+    <div class="skills-grid">
+        <!-- Photoshop -->
+        <div class="skill-item">
+            
+            <p class="skill-name"> Adobe Photoshop</p>
+        </div>
+
+        <!-- Illustrator -->
+        <div class="skill-item">
+           
+            <p class="skill-name">Adobe Illustrator</p>
+        </div>
+          <!-- InDesign -->
+        <div class="skill-item">
+           
+            <p class="skill-name">Adobe InDesign</p>
+        </div>
+         <!-- Premiere Pro -->
+        <div class="skill-item">
+           
+            <p class="skill-name">Adobe Premiere Pro</p>
+        </div>
+
+        <!-- After Effects -->
+        <div class="skill-item">
+            
+            <p class="skill-name">Adobe After Effects</p>
+        </div>
+
+        <!-- Canva -->
+        <div class="skill-item">
+            
+            <p class="skill-name">Canva</p>
+        </div>
+        <!-- CapCut -->
+        <div class="skill-item">
+            
+            <p class="skill-name">CapCut</p>
+        </div>
+        <!-- ChatGpt -->
+        <div class="skill-item">
+            
+            <p class="skill-name">ChatGpt</p>
+        </div>
+        <!-- Gemini -->
+        <div class="skill-item">
+            
+            <p class="skill-name">Gemini</p>
+        </div>
+        <!-- Lightroom -->
+        <div class="skill-item">
+            
+            <p class="skill-name">Lightroom</p>
+        </div>
+         <!-- Firefly  -->
+        <div class="skill-item">
+            
+            <p class="skill-name">Adobe Firefly</p>
+        </div>
+          <!-- Midjourney  -->
+        <div class="skill-item">
+            
+            <p class="skill-name">Midjourney</p>
+        </div>
+    </div>
+</section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2 class="section-title">Ben Kimim?</h2>
+        <div class="about-content">
+            <p>
+                Adobe programları (Photoshop, Illustrator, After Effects) ve yapay zeka araçları (ChatGPT, Gemini) konusunda deneyimli bir grafik tasarımcıyım.
+                 Markaların görsel kimliklerini güçlendiren, yaratıcı ve etkili çözümler üretmeyi tutkuyla yapıyorum. Her projede hem estetik hem de işlevselliği ön planda tutarak, modern trendleri takip eder ve yenilikçi tasarımlar geliştiririm.
+            </p>
+            <br>
+            <p>
+                Tasarım sürecinde hem estetik hem de işlevsellik üzerinde yoğunlaşırım. Kullandığım araçların 
+                teknik özelliklerini iyi bilirken, aynı zamanda trendleri takip eder ve yenilikçi fikirler 
+                üretmeye devam ederim. Boş zamanlarımda sanat sergileri gezmeyi ve yeni tasarım teknikleri 
+                öğrenmeyi severim.
+            </p>
+            <br>
+            <p>
+                Tasarımın sadece güzel görünmekle kalmayıp, aynı zamanda etkili iletişim kurmayı sağlaması 
+                gerektiğini düşünüyorum. Sizinle birlikte çalışmaktan memnuniyet duyarım.
+            </p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title">İş Birliği</h2>
+        <div class="contact-grid">
+            <div class="contact-item">
+                <div class="contact-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <span class="contact-label">E-posta</span>
+                <p class="contact-value">omerklgll17@gmail.com</p>
+            </div>
+            <div class="contact-item">
+                <div class="contact-icon">
+                    <i class="fas fa-phone"></i>
+                </div>
+                <span class="contact-label">Telefon</span>
+                <p class="contact-value">+90 507 935 73 54</p>
+            </div>
+            <div class="contact-item">
+                <div class="contact-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <span class="contact-label">Konum</span>
+                <p class="contact-value">Sakarya, Türkiye</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Sayfa yüklendiğinde scroll indicator'a tıklandığında bir sonraki section'a scroll yap
+        document.addEventListener('DOMContentLoaded', function() {
+            const scrollIndicator = document.querySelector('.scroll-indicator');
+            const portfolioSection = document.getElementById('portfolio');
+            
+            scrollIndicator.addEventListener('click', function() {
+                portfolioSection.scrollIntoView({ behavior: 'smooth' });
+            });
+            
+            // Tüm section'ları görünürlük animasyonuyla yükle
+            const sections = document.querySelectorAll('section');
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // Section'ları görünür yap
+            sections.forEach(section => {
+                section.style.opacity = 0;
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
